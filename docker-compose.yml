@@ -1,5 +1,5 @@
 #
-# Docker-Compose Template
+# PHP-FPM + Nginx + MariaDB Docker-Compose
 #
 # Written by:
 #   Baptiste MOINE <bap.moine.86@gmail.com>
@@ -7,6 +7,51 @@
 
 version: '2.0'
 networks: {}
-services: {}
-volumes: {}
+services:
+    db:
+        image: mariadb:latest
+        container_name: db
+        environment:
+            MYSQL_DATABASE: app
+            MYSQL_PASSWORD: app-admin
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: admin-app
+        ports:
+            - 3306:3306/tcp
+        restart: always
+        volumes:
+            - //var/host/conf/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+            - dbdata:/var/lib/mysql:rw
+    http:
+        build: build/nginx
+        container_name: http
+        links:
+            - php
+        ports:
+            - 80:80/tcp
+            - 443:443/tcp
+        restart: always
+        volumes:
+            - //var/host/conf/nginx/nginx.conf:/etc/nginx/nginx.conf:rw
+            - //var/host/conf/nginx/conf.d:/etc/nginx/conf.d:rw
+            - //var/host/data/www/webroot:/usr/share/nginx/webroot:rw
+            - //var/host/data/www/vendor:/usr/share/nginx/vendor:rw
+            - //var/host/data/www/static:/usr/share/nginx/static:rw
+            - //var/host/log/nginx:/usr/share/nginx/log:rw
+    php:
+        build: build/php-fpm
+        container_name: php
+        links:
+            - db
+        privileged: true
+        restart: always
+        command: php-fpm --allow-to-run-as-root
+        volumes:
+            - //var/host/conf/php-fpm/www.conf:/etc/php5/fpm/pool.d/www.conf:rw
+            - //var/host/conf/php/php.ini:/usr/local/etc/php/php.ini:rw
+            - //var/host/data/www/webroot:/usr/share/nginx/webroot:rw
+            - //var/host/data/www/vendor:/usr/share/nginx/vendor:rw
+volumes:
+    dbdata:
+        driver: local
 
