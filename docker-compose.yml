@@ -22,6 +22,14 @@ services:
         volumes:
             - //var/host/conf/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
             - dbdata:/var/lib/mysql:rw
+    gitlab:
+        image: gitlab/gitlab-ce:8.6.7-ce.0
+        container_name: gitlab
+        environment:
+            GITLAB_OMNIBUS_CONFIG: "external_url 'http://gitlab.dev/'; gitlab_rails['lfs_enabled'] = true;"
+        restart: always
+        volumes:
+            - gitlab:/var/opt/gitlab:rw
     http:
         build: build/nginx
         container_name: http
@@ -53,5 +61,7 @@ services:
             - //var/host/data/www/vendor:/usr/share/nginx/vendor:rw
 volumes:
     dbdata:
+        driver: local
+    gitlab:
         driver: local
 
