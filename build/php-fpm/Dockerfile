@@ -13,6 +13,7 @@ MAINTAINER Baptiste MOINE <bap.moine.86@gmail.com>
 
 # Install PHP-FPM extensions.
 RUN apt-get update && apt-get install -y \
+        locales-all \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
