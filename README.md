@@ -51,11 +51,12 @@ To get this setup ready, please make sure to fill-in your host file to catch the
 
  - app.dev: Production web project;
  - gitlab.dev: Git repositories;
+ - stackedit.dev: StackEdit WEB app;
  - {lab.dev, local.dev}: Web projects laboratory.
 
 Your host file should look like (depending to your system):
 ```
-127.0.0.1 localhost local.dev gitlab.dev lab.dev app.dev
+127.0.0.1 localhost local.dev gitlab.dev stackedit.dev lab.dev app.dev
 ```
 
 ### Browse your applications ###
@@ -66,6 +67,7 @@ When done, turn on your web browser and crawl:
  - [http://app.dev/index.html](http://app.dev/index.html): Static web page delivered directly by Nginx;
  - [http://app.dev/adminer/](http://app.dev/adminer/): Adminer authentication page to test MariaDB connection (default creds: **admin-app**:**app-admin**);
  - [http://gitlab.dev/](http://gitlab.dev/): Gitlab-CE setup page proxified by Nginx;
+ - [http://stackedit.dev/](http://stackedit.dev/): StackEdit WEB app proxified by Nginx;
  - [http://lab.dev/](http://lab.dev/): Projects list in laboratory.
 
 ## Live display of logs ##

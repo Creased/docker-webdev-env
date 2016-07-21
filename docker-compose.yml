@@ -33,10 +33,21 @@ services:
         volumes:
             - gitlab:/var/opt/gitlab:rw
     http:
+    stackedit:
+        build: build/stackedit
+        container_name: stackedit
+        environment:
+            HOST: 0.0.0.0
+            PORT: 80
+        restart: always
+        volumes:
+            - //var/host/conf/stackedit/server.js:/stackedit/server.js:ro
         build: build/nginx
         container_name: http
         links:
+            - gitlab
             - php
+            - stackedit
         ports:
             - 80:80/tcp
             - 443:443/tcp
