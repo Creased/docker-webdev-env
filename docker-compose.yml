@@ -5,7 +5,7 @@
 #   Baptiste MOINE <contact@bmoine.fr>
 #
 
-version: '2.0'
+version: '3.0'
 networks:
     back:
         driver: bridge
@@ -26,10 +26,10 @@ services:
             - back
         restart: always
         volumes:
-            - //var/host/conf/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+            - ${ROOT}/conf/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
             - dbdata:/var/lib/mysql:rw
     gitlab:
-        image: gitlab/gitlab-ce:8.9.6-ce.0
+        image: gitlab/gitlab-ce:8.17.0-ce.0
         container_name: gitlab
         environment:
             GITLAB_OMNIBUS_CONFIG: "external_url 'http://gitlab.dev/'; gitlab_rails['lfs_enabled'] = true;"
@@ -50,7 +50,7 @@ services:
             - front
         restart: always
         volumes:
-            - //var/host/conf/stackedit/server.js:/stackedit/server.js:ro
+            - ${ROOT}/conf/stackedit/server.js:/stackedit/server.js:ro
     http:
         build: build/nginx
         container_name: http
@@ -65,13 +65,13 @@ services:
             - front
         restart: always
         volumes:
-            - //var/host/conf/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-            - //var/host/conf/nginx/conf.d:/etc/nginx/conf.d:ro
-            - //var/host/data/www/webroot:/usr/share/nginx/webroot:ro
-            - //var/host/data/www/lab:/usr/share/nginx/lab:ro
-            - //var/host/data/www/vendor:/usr/share/nginx/vendor:ro
-            - //var/host/data/www/static:/usr/share/nginx/static:ro
-            - //var/host/log/nginx:/usr/share/nginx/log:rw
+            - ${ROOT}/conf/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ${ROOT}/conf/nginx/conf.d:/etc/nginx/conf.d:ro
+            - ${ROOT}/data/www/webroot:/usr/share/nginx/webroot:ro
+            - ${ROOT}/data/www/lab:/usr/share/nginx/lab:ro
+            - ${ROOT}/data/www/vendor:/usr/share/nginx/vendor:ro
+            - ${ROOT}/data/www/static:/usr/share/nginx/static:ro
+            - ${ROOT}/log/nginx:/usr/share/nginx/log:rw
     php:
         build: build/php-fpm
         container_name: php
@@ -84,11 +84,11 @@ services:
         restart: always
         command: php-fpm --allow-to-run-as-root
         volumes:
-            - //var/host/conf/php-fpm/www.conf:/etc/php5/fpm/pool.d/www.conf:ro
-            - //var/host/conf/php/php.ini:/usr/local/etc/php/php.ini:ro
-            - //var/host/data/www/webroot:/usr/share/nginx/webroot:ro
-            - //var/host/data/www/lab:/usr/share/nginx/lab:ro
-            - //var/host/data/www/vendor:/usr/share/nginx/vendor:rw
+            - ${ROOT}/conf/php-fpm/www.conf:/etc/php5/fpm/pool.d/www.conf:ro
+            - ${ROOT}/conf/php/php.ini:/usr/local/etc/php/php.ini:ro
+            - ${ROOT}/data/www/webroot:/usr/share/nginx/webroot:ro
+            - ${ROOT}/data/www/lab:/usr/share/nginx/lab:ro
+            - ${ROOT}/data/www/vendor:/usr/share/nginx/vendor:rw
 volumes:
     dbdata:
         driver: local
