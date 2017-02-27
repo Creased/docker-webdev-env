@@ -2,14 +2,14 @@
 # PHP-FPM Dockerfile
 #
 # Written by:
-#   Baptiste MOINE <bap.moine.86@gmail.com>
+#   Baptiste MOINE <contact@bmoine.fr>
 #
 
 # Pull base image.
 # FROM php:5.6-fpm
 FROM php:7-fpm
 
-MAINTAINER Baptiste MOINE <bap.moine.86@gmail.com>
+MAINTAINER Baptiste MOINE <contact@bmoine.fr>
 
 # Install PHP-FPM extensions.
 RUN apt-get update && apt-get install -y \
