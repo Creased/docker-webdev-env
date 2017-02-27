@@ -32,7 +32,6 @@ services:
         restart: always
         volumes:
             - gitlab:/var/opt/gitlab:rw
-    http:
     stackedit:
         build: build/stackedit
         container_name: stackedit
@@ -42,6 +41,7 @@ services:
         restart: always
         volumes:
             - //var/host/conf/stackedit/server.js:/stackedit/server.js:ro
+    http:
         build: build/nginx
         container_name: http
         links:
