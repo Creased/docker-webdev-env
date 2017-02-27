@@ -2,13 +2,13 @@
 # Nginx Dockerfile
 #
 # Written by:
-#   Baptiste MOINE <bap.moine.86@gmail.com>
+#   Baptiste MOINE <contact@bmoine.fr>
 #
 
 # Pull base image.
 FROM nginx:latest
 
-MAINTAINER Baptiste MOINE <bap.moine.86@gmail.com>
+MAINTAINER Baptiste MOINE <contact@bmoine.fr>
 
 # Create Nginx file structure.
 RUN rm -rf /usr/share/nginx/html/ \
