@@ -2,13 +2,13 @@
 # StackEdit Dockerfile
 #
 # Written by:
-#   Baptiste MOINE <bap.moine.86@gmail.com>
+#   Baptiste MOINE <contact@bmoine.fr>
 #
 
 # Pull base image.
 FROM debian:8.5
 
-MAINTAINER Baptiste MOINE <bap.moine.86@gmail.com>
+MAINTAINER Baptiste MOINE <contact@bmoine.fr>
 
 # Install nodeJS and StackEdit.
 RUN apt-get update && apt-get install -y \
