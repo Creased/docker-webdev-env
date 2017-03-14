@@ -9,8 +9,16 @@ version: '3.0'
 networks:
     back:
         driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.1.0.0/24
     front:
         driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.0.0.0/24
 services:
     db:
         image: mariadb:latest
