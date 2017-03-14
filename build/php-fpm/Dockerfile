@@ -12,7 +12,7 @@ FROM php:7-fpm
 MAINTAINER Baptiste MOINE <contact@bmoine.fr>
 
 # Optional proxy configuration
-# COPY /etc/apt/apt.conf.d/70debconf /etc/apt/apt.conf.d/70debconf
+# COPY ./70debconf /etc/apt/apt.conf.d/70debconf
 
 # Install PHP-FPM extensions.
 RUN apt-get update && apt-get install -y \

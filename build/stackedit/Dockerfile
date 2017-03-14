@@ -11,7 +11,7 @@ FROM debian:8.5
 MAINTAINER Baptiste MOINE <contact@bmoine.fr>
 
 # Optional proxy configuration
-# COPY /etc/apt/apt.conf.d/70debconf /etc/apt/apt.conf.d/70debconf
+# COPY ./70debconf /etc/apt/apt.conf.d/70debconf
 
 # Install nodeJS and StackEdit.
 RUN apt-get update && apt-get install -y \

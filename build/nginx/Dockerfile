@@ -15,9 +15,6 @@ RUN rm -rf /usr/share/nginx/html/ \
 && mkdir -p /usr/share/nginx/static \
 && mkdir -p /usr/share/nginx/webroot
 
-# Optional proxy configuration
-# COPY /etc/apt/apt.conf.d/70debconf /etc/apt/apt.conf.d/70debconf
-
 # Create volumes.
 VOLUME ["/etc/nginx/", "/usr/share/nginx/"]
 
