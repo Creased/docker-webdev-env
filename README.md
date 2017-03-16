@@ -22,8 +22,8 @@ Development environment based on PHP-FPM, Nginx and MariaDB
 ### Download ###
 
 ```bash
-git clone https://github.com/Creased/docker-compose-nginx-fpm-mariadb.git dev-env
-pushd dev-env/
+git clone https://gitlab.com/Creased/docker-webdev-env webdev-env
+pushd webdev-env/
 ```
 
 ### Build ###
@@ -55,6 +55,7 @@ To get this setup ready, please make sure to fill-in your host file to catch the
  - {lab.dev, local.dev}: Web projects laboratory.
 
 Your host file should look like (depending to your system):
+
 ```
 127.0.0.1 localhost local.dev gitlab.dev stackedit.dev lab.dev app.dev
 ```
